@@ -1,0 +1,20 @@
+\frametitle{IK - Lo Jacobiano}
+\begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+    $
+    \begin{bmatrix}
+        \dfrac{\partial p_x}{\partial \theta_1} & \dfrac{\partial p_x}{\partial \theta_2} & \dots & \dfrac{\partial p_x}{\partial \theta_n} \\[2ex]
+        \dfrac{\partial p_y}{\partial \theta_1} & \dfrac{\partial p_y}{\partial \theta_2} & \dots & \dfrac{\partial p_y}{\partial \theta_n} \\[2ex]
+        \vdots & \vdots & \ddots & \vdots \\[2ex]
+        \dfrac{\partial \alpha_z}{\partial \theta_1} & \dfrac{\partial \alpha_z}{\partial \theta_2} & \dots & \dfrac{\partial \alpha_z}{\partial \theta_n}
+    \end{bmatrix}
+    $
+    \column{0.5\textwidth}
+^^I^^IMatrice di derivate parziali corrispondenti alla differenza della posizione attuale dell'end-effector rispetto alla posizione obiettivo.
+^^I^^I\begin{alertblock}{Proprietà}
+^^I^^I^^I\begin{itemize}
+^^I^^I^^I^^I\item Soluzione iterativa
+^^I^^I^^I^^I\item Simile al metodo del simplesso
+^^I^^I^^I\end{itemize}
+    \end{alertblock}
+^^I\end{columns}
