@@ -64,22 +64,30 @@
 \begin{frame}{Rappresentazioni di rotazione}
   \begin{columns}[T,onlytextwidth]
     \column{0.33\textwidth}
+    Euler
       \begin{itemize}[<+- | alert@+>]
-        \item \alert<5>{This is\only<4>{ really} important}
-        \item Now this
-        \item And now this
+        \item Conceptually simple
+        \item Complex and confusing in practice
+        \item Multiple rotation order
+        \item Gimbal lock and weird interpolation
       \end{itemize}
 
     \column{0.33\textwidth}
+      Quaternions
       \begin{itemize}[<+- | alert@+>]
-        \item Now this
-        \item And now this
+        \item No gimbal lock/changing axes
+        \item Interpolation is smooth and direct
+        \item Simple to do calculations with
+        \item Consistent and predictable interpolation
       \end{itemize}
-
+      
     \column{0.33\textwidth}
+    Matrici
       \begin{itemize}[<+- | alert@+>]
-        \item Now this
-        \item And now this
+        \item \alert<5>{Qualsiasi tipo di trasformazione}
+        \item Parenting
+        \item Constraints
+        \item Armature deform
       \end{itemize}
   \end{columns}
 \end{frame}
