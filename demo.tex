@@ -17,7 +17,7 @@
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
 \title{Tecniche di animazione 3D nella realizzazione di un cortometraggio}
-\subtitle{}
+\subtitle{}												% L'obiettivo della mia tesi è quello di realizzare un cortometraggio animato in 3D
 % \date{\today}
 \date{10 Dicembre 2019}
 \author{Leonardo Marini}
@@ -28,30 +28,30 @@
 
 \maketitle
 
-\begin{frame}{Indice}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents%[hideallsubsections]
+\begin{frame}{Indice}																		% Si è quindi passati da una fase di analisi per capire quali fossero i requisiti.
+  \setbeamertemplate{section in toc}[sections numbered] % Ad una di progettazione in cui sono si sono decise le diverse tecniche da usare poi nella produzione.
+  \tableofcontents%[hideallsubsections]									% Le tecniche sono state quindi analizzate e studiate da un punto di vista principalmente matematico.
 \end{frame}
 
 \section[Intro]{Introduzione}
 
 \begin{frame}{Analisi} 
-      \begin{itemize}[<+- | alert@+>]								% L'obiettivo della mia tesi è quello di realizzare un 
-        \item Cortometraggio animato in 3D 					% cortometraggio con l'uso della computer grafica e, nella sua progettazione,
-        \item Uso di diverse tecniche di animazione % analizzare le tecniche di animazione 3D che vengono solitamente usate.
-        \item Breve durata 													% Dati i vincoli sulla durata di massimo 2 minuti si è scelto di realizzare solo il trailer.
+      \begin{itemize}[<+- | alert@+>]								% Tra i requisiti abbiamo che il
+        \item Cortometraggio animato in 3D 					% cortometraggio dev'essere realizzato in 3D con l'uso della computer grafica.
+        \item Uso di diverse tecniche di animazione % Devono essere usate diverse tecniche di animazione 3D.
+        \item Breve durata 													% Infine, dati i vincoli sulla durata di massimo 2 minuti, si è scelto di realizzare solo il trailer.
 				\item Nessun requisito sulla storia 				% Non sono stati dati altri vincoli, per quanto riguarda la storia
       \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{La storia} % Per quest'ultima si è scelto di rappresentarne una ideata dal mio collega... spiegazione
-  \begin{columns}[T,onlytextwidth]
-    \column{0.33\textwidth}
-      \begin{figure}
-          \centering
+\begin{frame}[fragile]{La storia}		% Per quest'ultima si è scelto di rappresentarne una ideata dal mio collega... spiegazione
+  \begin{columns}[T,onlytextwidth]	% In essa vengono mostrati i tre protagonisti e il loro primo incontro. In cui i 2 capitani,
+    \column{0.33\textwidth}					% ricercati in quanto ex pirati spaziali, si imbattono nel ragazzo e chiedono il suo aiuto per
+      \begin{figure}								% scappare.
+          \centering								% Il trailer mostrerà quindi alcune delle scene più salienti del corto, con sparatorie, e inseguimenti.
           \includegraphics[width=\textwidth]{figures/Capitano.png}
-          \caption{Capitano}
-      \end{figure}
+          \caption{Capitano}				% Questo ci ha permesso di concentrarci sulla fase di progettazione del corto, senza spendere tempo
+      \end{figure}									% nell'ideazione della storia.
 
     \column{0.33\textwidth}
       \begin{figure}
@@ -69,59 +69,59 @@
   \end{columns}
 \end{frame}
 
-\section{Concetti di animazione}
-
-\begin{frame}{Rappresentazioni di rotazione}
-  \begin{columns}[T,onlytextwidth]
+\section{Concetti di animazione}										% Come ho già detto, sono state usate diverse tecniche di animazione,
+                                             				% Ne vengono quindi spiegati alcuni concetti.
+\begin{frame}{Rappresentazioni di rotazione}				% Le rotazioni coprono un ruolo fondamentale nelle animazioni, ne sono state usate principalmente 3:
+  \begin{columns}[T,onlytextwidth]									% Angoli di Eulero, Quaternioni e Rappresentazione matriciale.
     \column{0.33\textwidth}
-    Euler
+    Angoli di Eulero
       \begin{itemize}[<+- | alert@+>]
-        \item Concettualmente semplice
-        \item Complessa e confusa in pratica
-        \item L'ordine delle rotazioni è importante
-        \item Gimbal lock e interpolazioni spezzate
-      \end{itemize}
+							\item Concettualmente semplice							% La prima è quella concettualmente più semplice: utilizza 3 rotazioni una per ogni asse (X, Y e Z)
+        \item Complessa e confusa in pratica							% L'implementazione però è complessa:
+        \item L'ordine delle rotazioni è importante				% È importante stabilire l'ordine di queste tre rotazioni: cambiandolo cambia anche il risultato
+        \item Gimbal lock e interpolazioni spezzate				% Inoltre, essendo gli assi dipendenti tra loro, questo modello presenta un problema, ovvero
+      \end{itemize}										% che se due assi si allienano si perde un grado di libertà di rotazione. Questo problema è conosciuto come Gimbal Lock.
 
     \column{0.33\textwidth}
-      Quaternions
+		Quaternioni
       \begin{itemize}[<+- | alert@+>]
-        \item No gimbal lock
-        \item Interpolazione diretta e dolce
-        \item Semplifica i calcoli
-        \item Interpolazioni consistenti e predicibili
+        \item No gimbal lock												% I quaternioni risolvono il problema presente nella rapresentazione euleriana.
+				\item Concettualmente complessa							% Il costo è che questo modello risulta concettualmente più complesso, infatti una rotazione completa consiste in un angolo di 720°
+        \item Semplifica i calcoli									% Ha però il vantagigo aggiuntivo di semplificare i calcoli
+        \item Interpolazioni consistenti e dirette  % e il risultato sono interpolazioni dirette, non spezzate sui 3 assi.
       \end{itemize}
       
     \column{0.33\textwidth}
-    Matrici
-      \begin{itemize}[<+- | alert@+>]
-        \item Qualsiasi tipo di trasformazione
-        \item Parenting
-        \item Constraints
-        \item Armature deform
+    Matrici																			% In fine la rappresentazione con l'uso di matrici
+      \begin{itemize}[<+- | alert@+>]						% permette di rappresentare qualsiasi tipo di trasformazione, non solo rotazioni.
+				\item Qualsiasi tipo di trasformazione	% Sono concettualmente più complesse dei quaternioni, per questo motivo non vengono solitamente usate dall'utente finale (animatore)
+				\item Parenting				% In blender ad esempio, esse sono utilizzate internamente, ogni rotazione viene convertita in matrice. Vengono anche usate per associazioni padre-figlio,
+        \item Constraints			% vincoli
+				\item Armature deform	% e deformazioni per l'uso di armature che permettono l'animazione di figure complesse come quella umana.
       \end{itemize}
   \end{columns}
 \end{frame}
 
-\begin{frame}{FK (Forward Kinematics)}
-  \begin{itemize}[<+- | alert@+>]
-    \item Figure complesse come quella umana
-    \item Approccio naive
-		\item Precisione del posizionamento
-    \item Difficile animare azioni comuni
+\begin{frame}{FK (Forward Kinematics)}					% Data la presenza di diversi personaggi, una delle tecniche maggiormente utilizzata è stata quella delle cinematiche,
+		\begin{itemize}[<+- | alert@+>]							% che permettodo appunto di animare figure complesse, come quella umana.
+    \item Figure complesse come quella umana    % ne esistono di due tipi. La cinematica diretta ha un approccio più naive ovvero, per posizionare un arto, viene applicata una rotazione
+    \item Approccio naive												% ad ogni articolazione, partendo da quelle più vicine alla radice, che influenzano anche quelle più in basso nella gerarchia.
+		\item Precisione del posizionamento					% Permette un posizionamento della figura molto preciso
+    \item Difficile animare azioni comuni				% ma rende difficile animare azioni comuni siccome ruotare la spalla sposterebbe la posizione della mano.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{IK (Inverse Kinematics)}
-  \begin{itemize}[<+- | alert@+>]
-    \item Figure complesse come quella umana
-    \item Approccio inverso
-		\item Semplifica le animazioni
-    \item Complessa da calcolare
-  \end{itemize}
+\begin{frame}{IK (Inverse Kinematics)}					
+		\begin{itemize}[<+- | alert@+>]							
+    \item Approccio inverso											% La cinematica inversa ha un approccio opposto rispetto alla precedente.
+    \item Figure complesse come quella umana		% Anch'essa, viene uilizzata per animare figure complesse ma,
+		\item Semplifica le animazioni							% poiché viene posizionata diretamente l'ultima articolazione della gerarchia, e le altre vengono calcolte di conseguenza,
+    \item Complessa da calcolare                % semplifica il lavoro dell'animatore, che non deve riposizionare la mano ogni volta che la spalla di un personaggio viene ruotata.
+  \end{itemize}                                 % Ovviamente è più complessa da calcolare rispetto a quella diretta. Per farlo esistono diverse tecniche.
 \end{frame}
 
 
-\begin{frame}[fragile]{IK - Lo Jacobiano}
+\begin{frame}[fragile]{IK - Lo Jacobiano}				
   \begin{columns}[T,onlytextwidth]
     \column{0.5\textwidth}
     $
@@ -132,12 +132,12 @@
         \dfrac{\partial \alpha_z}{\partial \theta_1} & \dfrac{\partial \alpha_z}{\partial \theta_2} & \dots & \dfrac{\partial \alpha_z}{\partial \theta_n} 
     \end{bmatrix}
     $
-    \column{0.5\textwidth}
+    \column{0.5\textwidth}											% La maggior parte di esse utilizza lo Jacobiano, ovvero una matrice...
 		Matrice di derivate parziali corrispondenti alla differenza della posizione attuale dell'end-effector rispetto alla posizione obiettivo.
-		\begin{alertblock}{Proprietà}
-			\begin{itemize}
-				\item Soluzione iterativa
-				\item Simile al metodo del simplesso
+		\begin{alertblock}{Proprietà}	
+				\begin{itemize}													% questo permette di calcolare iterativamente la posizione dell'end-effector (mano)
+				\item Soluzione iterativa								% che si avvicina alla posizione obiettivo finché non la raggiunge, se esiste una soluzione
+				\item Simile al metodo del simplesso		% Il metodo in cui la soluzione è calcolata è quindi simile a quello del simplesso.
 			\end{itemize}
     \end{alertblock}
 	\end{columns}
