@@ -9,12 +9,12 @@
         \dfrac{\partial \alpha_z}{\partial \theta_1} & \dfrac{\partial \alpha_z}{\partial \theta_2} & \dots & \dfrac{\partial \alpha_z}{\partial \theta_n}
     \end{bmatrix}
     $
-    \column{0.5\textwidth}
+    \column{0.5\textwidth}^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I% La maggior parte di esse utilizza lo Jacobiano, ovvero una matrice...
 ^^I^^IMatrice di derivate parziali corrispondenti alla differenza della posizione attuale dell'end-effector rispetto alla posizione obiettivo.
-^^I^^I\begin{alertblock}{Proprietà}
-^^I^^I^^I\begin{itemize}
-^^I^^I^^I^^I\item Soluzione iterativa
-^^I^^I^^I^^I\item Simile al metodo del simplesso
+^^I^^I\begin{alertblock}{Proprietà}^^I
+^^I^^I^^I^^I\begin{itemize}^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I% questo permette di calcolare iterativamente la posizione dell'end-effector (mano)
+^^I^^I^^I^^I\item Soluzione iterativa^^I^^I^^I^^I^^I^^I^^I^^I% che si avvicina alla posizione obiettivo finché non la raggiunge, se esiste una soluzione
+^^I^^I^^I^^I\item Simile al metodo del simplesso^^I^^I% Il metodo in cui la soluzione è calcolata è quindi simile a quello del simplesso.
 ^^I^^I^^I\end{itemize}
     \end{alertblock}
 ^^I\end{columns}
