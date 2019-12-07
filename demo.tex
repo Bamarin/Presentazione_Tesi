@@ -122,33 +122,86 @@
 
 
 \begin{frame}[fragile]{IK - Lo Jacobiano}				
-  \begin{columns}[T,onlytextwidth]
-    \column{0.5\textwidth}
-    $
-    \begin{bmatrix}
-        \dfrac{\partial p_x}{\partial \theta_1} & \dfrac{\partial p_x}{\partial \theta_2} & \dots & \dfrac{\partial p_x}{\partial \theta_n} \\[2ex]
-        \dfrac{\partial p_y}{\partial \theta_1} & \dfrac{\partial p_y}{\partial \theta_2} & \dots & \dfrac{\partial p_y}{\partial \theta_n} \\[2ex]
-        \vdots & \vdots & \ddots & \vdots \\[2ex]
-        \dfrac{\partial \alpha_z}{\partial \theta_1} & \dfrac{\partial \alpha_z}{\partial \theta_2} & \dots & \dfrac{\partial \alpha_z}{\partial \theta_n} 
-    \end{bmatrix}
-    $
-    \column{0.5\textwidth}											% La maggior parte di esse utilizza lo Jacobiano, ovvero una matrice...
-		Matrice di derivate parziali corrispondenti alla differenza della posizione attuale dell'end-effector rispetto alla posizione obiettivo.
-		\begin{alertblock}{Proprietà}	
-				\begin{itemize}													% questo permette di calcolare iterativamente la posizione dell'end-effector (mano)
-				\item Soluzione iterativa								% che si avvicina alla posizione obiettivo finché non la raggiunge, se esiste una soluzione
-				\item Simile al metodo del simplesso		% Il metodo in cui la soluzione è calcolata è quindi simile a quello del simplesso.
-			\end{itemize}
-    \end{alertblock}
-	\end{columns}
+  \alt<8>{
+    \begin{align*}
+        V &= J\dot{\theta}\\
+        J^{-1}V &= \dot{\theta}
+    \end{align*}
+  }
+  {
+    \begin{columns}[onlytextwidth]
+      \column{0.4\textwidth}
+      \only<1-5>{
+        $
+        \begin{bmatrix}
+            \dfrac{\partial p_x}{\partial \theta_1} & \dfrac{\partial p_x}{\partial \theta_2} & \dots & \dfrac{\partial p_x}{\partial \theta_n} \\[2ex]
+            \dfrac{\partial p_y}{\partial \theta_1} & \dfrac{\partial p_y}{\partial \theta_2} & \dots & \dfrac{\partial p_y}{\partial \theta_n} \\[2ex]
+            \vdots & \vdots & \ddots & \vdots \\[2ex]
+            \dfrac{\partial \alpha_z}{\partial \theta_1} & \dfrac{\partial \alpha_z}{\partial \theta_2} & \dots & \dfrac{\partial \alpha_z}{\partial \theta_n} 
+        \end{bmatrix}
+        $
+      }
+      \only<6>{
+        \begin{figure}
+          \includegraphics[width=.9\linewidth]{figures/16b}
+          \caption{Velocità lineare, $v$}
+        \end{figure}
+      }
+      \only<7>{
+        \begin{figure}
+          \includegraphics[width=.9\linewidth]{figures/16a}
+          \caption{Velocità angolare, $\omega$}
+        \end{figure}
+      }
+      \column{0.6\textwidth}											% La maggior parte di esse utilizza lo Jacobiano, ovvero una matrice...
+      \only<1>{
+        Matrice di derivate parziali corrispondenti alla differenza della posizione attuale dell'end-effector rispetto alla posizione obiettivo.
+        \begin{alertblock}{Proprietà}	
+            \begin{itemize}													% questo permette di calcolare iterativamente la posizione dell'end-effector (mano)
+            \item Soluzione iterativa								% che si avvicina alla posizione obiettivo finché non la raggiunge, se esiste una soluzione
+            \item Simile al simplesso		% Il metodo in cui la soluzione è calcolata è quindi simile a quello del simplesso.
+          \end{itemize}
+        \end{alertblock}
+      }
+      \only<2->{
+        \begin{itemize}
+          \item<2->
+            \only<2-4>{$Y=
+            \begin{bmatrix}
+              p_x & p_y & p_z & \alpha_x & \alpha_y & \alpha_z
+            \end{bmatrix}^T$}
+            \only<5>{\alert{$
+              V=
+              \begin{bmatrix}
+                  v_x & v_y & v_z & \omega_x & \omega_y & \omega_z
+              \end{bmatrix}
+              ^T
+            $}}
+            \only<6->{
+              $v=Z\times(E-J_i)$ 
+            }
+            
+          \item<3->
+            \only<3-5>{$\dot{\theta}=
+            \begin{bmatrix}
+              \dot{\theta}_1 & \dot{\theta}_2 & \ldots & \dot{\theta}_n
+            \end{bmatrix}^T$}
+            \only<7>{
+              $\omega=\omega_i$ 
+            }
+          \item<4-5>$V = \dot{Y} = J(\theta)\dot{\theta}$
+        \end{itemize}
+      }
+    \end{columns}
+  }
 \end{frame}
 
 
-\section{Progettazione}
-\begin{frame}{Rigging} % I rig dei modelli devono essere pensati in base alle animazioni da realizzare
-  \begin{table}
+\section{Progettazione}	% Affinché un modello 3D sia animabile, è necessario aggiungergli dei controlli per poterlo muovere.
+\begin{frame}{Rigging}	% Questi sono comunemente chiamati rig, e devono essere progettati secondo le animazioni da realizzare.
+  \begin{table}					% A tal proposito il rig è stato suddiviso in sotto-porzioni e, per ognuna sono state individuate le azioni 
 					\caption{Diversi tipi di rig necessari un una figura umana in base ai compiti che deve eseguire}
-		\begin{tabular}{lcr}
+		\begin{tabular}{lcr}% che essa dovrà eseguire. La soluzione di progettazione è stata scelta di conseguenza.
 			\toprule
 			Porzione del rig & Compito & Soluzione\\
 			\midrule
@@ -160,13 +213,13 @@
 	\end{table}	
 \end{frame}
 
-\section{Produzione}
-\begin{frame}{Animazioni}
-	\metroset{block=fill}
-	\begin{columns}[T,onlytextwidth]
-
-		\column{0.45\textwidth}
-		\begin{exampleblock}{IK}
+\section{Produzione}        % Nella produzione del cortometraggio è stato fatto uso di diverse animazioni già citate in precedenza.
+\begin{frame}{Animazioni}   % Oltre alla cinematica diretta e inversa, alcune animazioni sono state rese cicliche.
+	\metroset{block=fill}             % Ciò ha permesso di modularizzarle e riutilizzarle.
+	\begin{columns}[T,onlytextwidth]  % Le curve sono state principalmente utilizzate come percorso di movimento.
+                                    % In combinazione con animazioni cicliche, sul posto,
+		\column{0.45\textwidth}         % esse hanno permesso di separare l'animazione dal movimento lungo la curva. 
+    \begin{exampleblock}{IK}
 		camminata\\
 		corsa\\
 		raggiungere
