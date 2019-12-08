@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{Introduzione}{3}{0}{1}
-\beamer@sectionintoc {2}{Concetti di animazione}{9}{0}{2}
-\beamer@sectionintoc {3}{Progettazione}{38}{0}{3}
-\beamer@sectionintoc {4}{Produzione}{40}{0}{4}
+\beamer@sectionintoc {2}{Concetti di animazione}{8}{0}{2}
+\beamer@sectionintoc {3}{Progettazione}{28}{0}{3}
+\beamer@sectionintoc {4}{Produzione}{30}{0}{4}

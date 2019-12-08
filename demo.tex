@@ -10,15 +10,9 @@
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 
-\usepackage{pgfplots}
-\usepgfplotslibrary{dateplot}
-
-\usepackage{xspace}
-\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
-
 \title{Tecniche di animazione 3D nella realizzazione di un cortometraggio}
-\subtitle{}												% L'obiettivo della mia tesi è quello di realizzare un cortometraggio animato in 3D
-% \date{\today}
+\subtitle{Elaborato in Computer Grafica}						% L'obiettivo della mia tesi è quello di realizzare un cortometraggio animato in 3D con l'utilizzo della computer grafica.
+% \date{\today}                                     % Ho scelto questo ambito perché è in linea col Master, che ho iniziato in Svezia, sulla visualizzazione e la grafica interattiva.
 \date{10 Dicembre 2019}
 \author{Leonardo Marini}
 \institute{ALMA MATER STUDIORUM - UNIVERSITÀ DI BOLOGNA}
@@ -28,7 +22,7 @@
 
 \maketitle
 
-\begin{frame}{Indice}																		% Si è quindi passati da una fase di analisi per capire quali fossero i requisiti.
+\begin{frame}{Indice}																		% Il progetto ha incluso una fase di analisi per capire quali fossero i requisiti.
   \setbeamertemplate{section in toc}[sections numbered] % Ad una di progettazione in cui sono si sono decise le diverse tecniche da usare poi nella produzione.
   \tableofcontents%[hideallsubsections]									% Le tecniche sono state quindi analizzate e studiate da un punto di vista principalmente matematico.
 \end{frame}
@@ -44,38 +38,38 @@
       \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{La storia}		% Per quest'ultima si è scelto di rappresentarne una ideata dal mio collega... spiegazione
-  \begin{columns}[T,onlytextwidth]	% In essa vengono mostrati i tre protagonisti e il loro primo incontro. In cui i 2 capitani,
-    \column{0.33\textwidth}					% ricercati in quanto ex pirati spaziali, si imbattono nel ragazzo e chiedono il suo aiuto per
-      \begin{figure}								% scappare.
-          \centering								% Il trailer mostrerà quindi alcune delle scene più salienti del corto, con sparatorie, e inseguimenti.
-          \includegraphics[width=\textwidth]{figures/Capitano.png}
-          \caption{Capitano}				% Questo ci ha permesso di concentrarci sulla fase di progettazione del corto, senza spendere tempo
-      \end{figure}									% nell'ideazione della storia.
-
-    \column{0.33\textwidth}
-      \begin{figure}
-          \centering
-          \includegraphics[width=\textwidth]{figures/ragazzo.png}
-          \caption{Ragazzo}
-      \end{figure}
-
-    \column{0.33\textwidth}
-      \begin{figure}
-          \centering
-          \includegraphics[width=\textwidth]{figures/Capitana.png}
-          \caption{Capitana}
-      \end{figure}
-  \end{columns}
-\end{frame}
+%\begin{frame}[fragile]{La storia}		% Per quest'ultima si è scelto di rappresentarne una ideata dal mio collega
+%  \begin{columns}[T,onlytextwidth]	
+%    \column{0.33\textwidth}					
+%      \begin{figure}								
+%          \centering								
+%          \includegraphics[width=\textwidth]{figures/Capitano.png}
+%          \caption{Capitano}				% Questo ci ha permesso di concentrarci sulla fase di progettazione del corto, senza spendere tempo
+%      \end{figure}									% nell'ideazione della storia.
+%
+%    \column{0.33\textwidth}
+%      \begin{figure}
+%          \centering
+%          \includegraphics[width=\textwidth]{figures/ragazzo.png}
+%          \caption{Ragazzo}
+%      \end{figure}
+%
+%    \column{0.33\textwidth}
+%      \begin{figure}
+%          \centering
+%          \includegraphics[width=\textwidth]{figures/Capitana.png}
+%          \caption{Capitana}
+%      \end{figure}
+%  \end{columns}
+%\end{frame}
 
 \section{Concetti di animazione}										% Come ho già detto, sono state usate diverse tecniche di animazione,
                                              				% Ne vengono quindi spiegati alcuni concetti.
 \begin{frame}{Rappresentazioni di rotazione}				% Le rotazioni coprono un ruolo fondamentale nelle animazioni, ne sono state usate principalmente 3:
   \begin{columns}[T,onlytextwidth]									% Angoli di Eulero, Quaternioni e Rappresentazione matriciale.
     \column{0.33\textwidth}
-    Angoli di Eulero
-      \begin{itemize}[<+- | alert@+>]
+    \alert<1>{Angoli di Eulero}
+      \begin{itemize}
 							\item Concettualmente semplice							% La prima è quella concettualmente più semplice: utilizza 3 rotazioni una per ogni asse (X, Y e Z)
         \item Complessa e confusa in pratica							% L'implementazione però è complessa:
         \item L'ordine delle rotazioni è importante				% È importante stabilire l'ordine di queste tre rotazioni: cambiandolo cambia anche il risultato
@@ -83,8 +77,8 @@
       \end{itemize}										% che se due assi si allienano si perde un grado di libertà di rotazione. Questo problema è conosciuto come Gimbal Lock.
 
     \column{0.33\textwidth}
-		Quaternioni
-      \begin{itemize}[<+- | alert@+>]
+    \alert<2>{Quaternioni}
+      \begin{itemize}
         \item No gimbal lock												% I quaternioni risolvono il problema presente nella rapresentazione euleriana.
 				\item Concettualmente complessa							% Il costo è che questo modello risulta concettualmente più complesso, infatti una rotazione completa consiste in un angolo di 720°
         \item Semplifica i calcoli									% Ha però il vantagigo aggiuntivo di semplificare i calcoli
@@ -92,8 +86,8 @@
       \end{itemize}
       
     \column{0.33\textwidth}
-    Matrici																			% In fine la rappresentazione con l'uso di matrici
-      \begin{itemize}[<+- | alert@+>]						% permette di rappresentare qualsiasi tipo di trasformazione, non solo rotazioni.
+    \alert<3>{Matrici}																			% In fine la rappresentazione con l'uso di matrici
+      \begin{itemize}						% permette di rappresentare qualsiasi tipo di trasformazione, non solo rotazioni.
 				\item Qualsiasi tipo di trasformazione	% Sono concettualmente più complesse dei quaternioni, per questo motivo non vengono solitamente usate dall'utente finale (animatore)
 				\item Parenting				% In blender ad esempio, esse sono utilizzate internamente, ogni rotazione viene convertita in matrice. Vengono anche usate per associazioni padre-figlio,
         \item Constraints			% vincoli
