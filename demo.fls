@@ -364,6 +364,14 @@ INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
+INPUT figures/17.png
 OUTPUT demo.vrb
 INPUT demo.vrb
 INPUT demo.vrb
@@ -395,6 +403,9 @@ INPUT demo.vrb
 INPUT figures/16a.png
 INPUT demo.vrb
 INPUT demo.vrb
+INPUT figures/arm.PNG
+INPUT figures/hand.PNG
+INPUT figures/leg.PNG
 OUTPUT demo.nav
 OUTPUT demo.toc
 OUTPUT demo.snm

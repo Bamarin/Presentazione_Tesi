@@ -97,21 +97,35 @@
 \end{frame}
 
 \begin{frame}{FK (Forward Kinematics)}					% Data la presenza di diversi personaggi, una delle tecniche maggiormente utilizzata è stata quella delle cinematiche,
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
 		\begin{itemize}[<+- | alert@+>]							% che permettodo appunto di animare figure complesse, come quella umana.
-    \item Figure complesse come quella umana    % ne esistono di due tipi. La cinematica diretta ha un approccio più naive ovvero, per posizionare un arto, viene applicata una rotazione
-    \item Approccio naive												% ad ogni articolazione, partendo da quelle più vicine alla radice, che influenzano anche quelle più in basso nella gerarchia.
-		\item Precisione del posizionamento					% Permette un posizionamento della figura molto preciso
-    \item Difficile animare azioni comuni				% ma rende difficile animare azioni comuni siccome ruotare la spalla sposterebbe la posizione della mano.
-  \end{itemize}
+      \item Figure complesse come quella umana  % ne esistono di due tipi. La cinematica diretta ha un approccio più naive ovvero, per posizionare un arto, viene applicata una rotazione
+      \item Approccio naive											% ad ogni articolazione, partendo da quelle più vicine alla radice, che influenzano anche quelle più in basso nella gerarchia.
+      \item Precisione del posizionamento				% Permette un posizionamento della figura molto preciso
+      \item Difficile animare azioni comuni			% ma rende difficile animare azioni comuni siccome ruotare la spalla sposterebbe la posizione della mano.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{figure}
+      \includegraphics[width=.9\linewidth]{figures/17}
+    \end{figure}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{IK (Inverse Kinematics)}					
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
 		\begin{itemize}[<+- | alert@+>]							
     \item Approccio inverso											% La cinematica inversa ha un approccio opposto rispetto alla precedente.
     \item Figure complesse come quella umana		% Anch'essa, viene uilizzata per animare figure complesse ma,
 		\item Semplifica le animazioni							% poiché viene posizionata diretamente l'ultima articolazione della gerarchia, e le altre vengono calcolte di conseguenza,
     \item Complessa da calcolare                % semplifica il lavoro dell'animatore, che non deve riposizionare la mano ogni volta che la spalla di un personaggio viene ruotata.
   \end{itemize}                                 % Ovviamente è più complessa da calcolare rispetto a quella diretta. Per farlo esistono diverse tecniche.
+    \column{0.5\textwidth}
+    \begin{figure}
+      \includegraphics[width=.9\linewidth]{figures/17}
+    \end{figure}
+  \end{columns}
 \end{frame}
 
 
@@ -205,6 +219,20 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}	
+  \begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+    \begin{figure}
+      \includegraphics[width=.9\linewidth]{figures/arm}
+    \end{figure}
+    \column{0.33\textwidth}
+    \begin{figure}
+      \includegraphics[width=.9\linewidth]{figures/hand}
+    \end{figure}
+    \column{0.33\textwidth}
+    \begin{figure}
+      \includegraphics[width=.9\linewidth]{figures/leg}
+    \end{figure}
+  \end{columns}
 \end{frame}
 
 \section{Produzione}        % Nella produzione del cortometraggio è stato fatto uso di diverse animazioni già citate in precedenza.
